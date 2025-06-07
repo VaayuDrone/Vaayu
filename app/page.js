@@ -3,7 +3,8 @@ import Navbar from './components/Navbar'
 import Header from './components/Header'
 import Segment from './components/Segment'
 import Selling from './components/Selling'
-import Shop from './components/Shop'
+import Shop from './components/Shop';
+import Images from './components/Images'
 
 const Page = () => {
   return (
@@ -18,6 +19,7 @@ const Page = () => {
       <Segment />
       <Selling/>
       <Shop/>
+      <Images/>
     </div>
   )
 }
