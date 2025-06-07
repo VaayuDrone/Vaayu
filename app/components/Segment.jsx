@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Segment = () => {
   return (
-    <div className='w-screen bg-(--Segment) h-full flex items-center justify-center py-16 mb-32 '>
+    <div className='w-screen bg-(--Segment) h-full flex items-center justify-center py-16'>
       {/* Structure */}
       <div className='w-4/5 max-w-5xl bg-white rounded-3xl flex flex-col px-8 py-10 gap-12 relative '>
         {/* Main Title */}
@@ -17,9 +17,9 @@ const Segment = () => {
             <div className='absolute inset-0 bg-[url("/Images/Videop.png")] bg-cover bg-center'></div>
             <div className='relative z-10 text-white h-1/2 justify-center flex flex-col  items-center p-4'>
               <div className='w-3/5 text-center'>
-                <div className='text-2xl font-semibold'>Video<br />Production</div>
+                <div className='text-2xl font-semibold'>Medicine<br />Delivery</div>
                 <div className='text-xs mt-1'>
-                  Professional Aerial and Ground Filmmaking Tools
+                  Professional and Quick Medicine Delivery
                 </div>
                 <div className='text-xs mt-3 cursor-pointer'>Learn More {'>'}</div>
               </div>
@@ -57,7 +57,7 @@ const Segment = () => {
         <div>
           <Image
             src="/Images/Illustration.png"
-            alt="Logo"
+            alt="Illustration"
             width={200}
             height={200}
             className="absolute bottom-0 left-0 translate-x-[-50%] translate-y-1/2"

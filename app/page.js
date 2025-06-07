@@ -2,6 +2,8 @@ import React from 'react'
 import Navbar from './components/Navbar'
 import Header from './components/Header'
 import Segment from './components/Segment'
+import Selling from './components/Selling'
+import Shop from './components/Shop'
 
 const Page = () => {
   return (
@@ -14,6 +16,8 @@ const Page = () => {
         <Header />
       </div>
       <Segment />
+      <Selling/>
+      <Shop/>
     </div>
   )
 }
