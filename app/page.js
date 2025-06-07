@@ -4,7 +4,8 @@ import Header from './components/Header'
 import Segment from './components/Segment'
 import Selling from './components/Selling'
 import Shop from './components/Shop';
-import Images from './components/Images'
+import Images from './components/Images';
+import Innovation from './components/Innovation'
 
 const Page = () => {
   return (
@@ -20,6 +21,7 @@ const Page = () => {
       <Selling/>
       <Shop/>
       <Images/>
+      <Innovation/>
     </div>
   )
 }

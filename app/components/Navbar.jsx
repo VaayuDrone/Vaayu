@@ -23,7 +23,7 @@ const Navbar = () => {
               {link}
             </span>
           ))}
-          <div className="flex gap-4">
+          <div className="flex gap-4 invert">
             <Image src="/Svg/Shop.svg" alt="Shop" width={24} height={24} />
             <Image src="/Svg/Bag.svg" alt="Bag" width={24} height={24} />
           </div>
