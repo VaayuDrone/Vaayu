@@ -1,51 +1,60 @@
-import React from 'react'
-import Image from "next/image";
+'use client';
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
-    return (
-        <div className='w-screen h-30 flex items-center justify-center '>
+  const [isOpen, setIsOpen] = useState(false);
 
-            {/*Structure*/}
-            <div className='w-full h-full flex items-center justify-between pt-6'>
-                {/* Main */}
-                <div className='pl-24'>
-                    {/* Logo */}
-                    <Image
-                        src="/Svg/Vaayu.svg"
-                        alt="Logo"
-                        width={200}
-                        height={200}
-                        className='cursor-pointer'
-                    />
-                </div>
-                <div className='flex items-center gap-12 pr-24'>
-                    {/* Navigation */}
-                    <span className='font-poppins cursor-pointer'>Drones</span>
-                    <span className='font-poppins cursor-pointer'>Portable</span>
-                    <span className='font-poppins cursor-pointer'>Specialized</span>
-                    <span className='font-poppins cursor-pointer'>Support</span>
-                    <span className='font-poppins cursor-pointer'>About</span>
-                    <span className='flex items-center justify-center'>
-                        <Image
-                        src="/Svg/Shop.svg"
-                        alt="Shop"
-                        width={30}
-                        height={30}
-                        className='cursor-pointer'
-                    />
-                    <Image
-                        src="/Svg/Bag.svg"
-                        alt="Bag"
-                        width={30}
-                        height={30}
-                        className='cursor-pointer'
-                    />
-                    </span>
-                </div>
-            </div>
+  const navLinks = ['Drones', 'Portable', 'Specialized', 'Support', 'About'];
 
+  return (
+    <nav className="w-full bg-white fixed top-0 left-0 z-[1000] font-poppins border-b border-gray-200">
+      <div className="max-w-[1920px] mx-auto px-6 md:px-24 py-4 flex justify-between items-center">
+        {/* Logo */}
+        <div>
+          <Image src="/Svg/Vaayu.svg" alt="Logo" width={150} height={60} className="cursor-pointer" />
         </div>
-    )
-}
 
-export default Navbar
+        {/*for Desktop view*/}
+        <div className="hidden md:flex items-center gap-10">
+          {navLinks.map((link, idx) => (
+            <span key={idx} className="cursor-pointer hover:text-green-600 transition">
+              {link}
+            </span>
+          ))}
+          <div className="flex gap-4">
+            <Image src="/Svg/Shop.svg" alt="Shop" width={24} height={24} />
+            <Image src="/Svg/Bag.svg" alt="Bag" width={24} height={24} />
+          </div>
+        </div>
+
+        {/* Hamburger */}
+        <div className="md:hidden">
+          <button onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
+      </div>
+
+      {/* for Mobile view  */}
+      {isOpen && (
+        <ul className="md:hidden px-6 pt-2 pb-6 bg-white border-t border-gray-200">
+          <ul className="flex flex-col gap-4">
+            {navLinks.map((link, idx) => (
+              <li key={idx} className="cursor-pointer hover:text-green-600">
+                {link}
+              </li>
+            ))}
+            <div className="flex gap-4 pt-4">
+              <Image src="/Svg/Shop.svg" alt="Shop" width={24} height={24} />
+              <Image src="/Svg/Bag.svg" alt="Bag" width={24} height={24} />
+            </div>
+          </ul>
+        </ul>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;
