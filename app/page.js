@@ -6,6 +6,7 @@ import Selling from './components/Selling'
 import Shop from './components/Shop';
 import Images from './components/Images';
 import Innovation from './components/Innovation'
+import Question from './components/Question'
 
 const Page = () => {
   return (
@@ -22,6 +23,7 @@ const Page = () => {
       <Shop/>
       <Images/>
       <Innovation/>
+      <Question/>
     </div>
   )
 }
