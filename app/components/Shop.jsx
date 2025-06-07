@@ -11,7 +11,7 @@ const Shop = () => {
              <div>
                 <div>
                     <Image
-                    src={"/SBT/Type1.png"}
+                    src={"/SBT/Type1.png"} width={200} height={200}
                     />
                     <div className='font-semibold text-base'>Drones</div>
                 </div>
