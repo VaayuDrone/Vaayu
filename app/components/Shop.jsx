@@ -20,7 +20,7 @@ const Shop = () => {
           ].map(({ src, label }, i) => (
             <div key={i} className='flex flex-col gap-2 bg-(--SBT) rounded-2xl hover:bg-(--HSBT) cursor-pointer'>
               
-              <div className='relative w-full aspect-square'>
+              <div className='relative w-full aspect-square '>
                 <Image
                   src={src}
                   alt={label.replace(/<br\s*\/?>/g, ' ')}
@@ -30,7 +30,7 @@ const Shop = () => {
               </div>
            
               <div
-                className='font-semibold text-base sm:text-base text-left pl-2 leading-tight py-2'
+                className='font-semibold text-base sm:text-base text-left pl-2 leading-tight py-2 '
                 dangerouslySetInnerHTML={{ __html: label }}
               />
             </div>

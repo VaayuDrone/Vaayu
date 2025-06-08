@@ -102,25 +102,23 @@ const reviews = [
     }
 ];
 
-const Review = () =>{
+const Review = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
-      const [itemsPerView, setItemsPerView] = useState(3);
+    const [itemsPerView, setItemsPerView] = useState(3);
 
-      useEffect(()=>{
-          const updateItemsPerView = () => {
-      const width = window.innerWidth;
-      if (width < 640) setItemsPerView(1); // for  Mobile screen
-      else if (width < 1024) setItemsPerView(2); // for tablet screen
-      else setItemsPerView(3); // for desktop screen
-    };
+    useEffect(() => {
+        const updateItemsPerView = () => {
+            const width = window.innerWidth;
+            if (width < 640) setItemsPerView(1); // for Mobile screen
+            else if (width < 1024) setItemsPerView(2); // for tablet screen
+            else setItemsPerView(3); // for desktop screen
+        };
 
-    updateItemsPerView();
-    window.addEventListener("resize", updateItemsPerView);
-    return () => window.removeEventListener("resize", updateItemsPerView);
-        
-      },[])
+        updateItemsPerView();
+        window.addEventListener("resize", updateItemsPerView);
+        return () => window.removeEventListener("resize", updateItemsPerView);
+    }, []);
 
-    
     const maxIndex = reviews.length - itemsPerView;
 
     const scrollLeft = () => {
@@ -131,13 +129,19 @@ const Review = () =>{
         setCurrentIndex(prev => Math.min(maxIndex, prev + 1));
     };
 
+    const getTranslatePercentage = () => {
+        if (itemsPerView === 1) return currentIndex * 100; 
+        if (itemsPerView === 2) return currentIndex * 50; 
+        return currentIndex * 33.33; 
+    };
+
     return (
         <div className="w-screen bg-(--Segment) font-poppins pt-16" id="reviews">
             <div className="relative w-full max-w-6xl mx-auto px-4 py-8">
                 <button
                     onClick={scrollLeft}
                     disabled={currentIndex === 0}
-                    className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="absolute left-0 top-1/2 -translate-y-1/2  bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed lg:ml-4 ml-6"
                     aria-label="Previous reviews"
                 >
                     <ChevronLeft className="w-5 h-5 text-gray-700" />
@@ -146,60 +150,61 @@ const Review = () =>{
                 <button
                     onClick={scrollRight}
                     disabled={currentIndex === maxIndex}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="absolute right-3 top-1/2 -translate-y-1/2  bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed lg:mr-0 mr-2"
                     aria-label="Next reviews"
                 >
                     <ChevronRight className="w-5 h-5 text-gray-700" />
                 </button>
 
-                <div className="overflow-hidden mx-12">
+                <div className="overflow-hidden mx-16">
                     <div
                         className="flex gap-4 transition-transform duration-300 ease-out"
                         style={{
-                            transform: `translateX(-${currentIndex * 33.33}%)`,
+                            transform: `translateX(-${getTranslatePercentage()}%)`,
                         }}
                     >
                         {reviews.map((review) => (
                             <div
                                 key={review.id}
                                 className="flex-none w-full sm:w-1/2 lg:w-1/3 px-2"
-                            > <div className="h-full bg-[--QR] rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow">
-                                <div className="flex items-center gap-3">
-                                    <div className="relative flex-shrink-0">
-                                        <img
-                                            src={review.image}
-                                            alt={review.name}
-                                            className="w-12 h-12 rounded-full object-cover"
-                                        />
-                                        <div className="absolute -bottom-1 -right-1 bg-white rounded-full p-1 shadow-sm">
-                                            <Heart className="w-3 h-3 text-red-500 fill-current" />
-                                        </div>
-                                    </div>
-
-                                    <div className="flex-1 min-w-0">
-                                        <div className="flex items-center justify-between">
-                                            <div>
-                                                <h3 className="font-semibold text-gray-900 text-sm truncate">
-                                                    {review.name}
-                                                </h3>
-                                                <p className="text-xs text-gray-500">{review.time}</p>
+                            >
+                                <div className="h-full  rounded-xl p-4 bg-(--QR)">
+                                    <div className="flex items-center gap-3">
+                                        <div className="relative flex-shrink-0">
+                                            <img
+                                                src={review.image}
+                                                alt={review.name}
+                                                className="w-12 h-12 rounded-full object-cover"
+                                            />
+                                            <div className="absolute -bottom-1 -right-1 bg-white rounded-full p-1 shadow-sm">
+                                                <Heart className="w-3 h-3 text-red-500 fill-current" />
                                             </div>
-                                            <Image src="/Svg/google.svg" width={20} height={20} alt="Google" />
+                                        </div>
+
+                                        <div className="flex-1 min-w-0">
+                                            <div className="flex items-center justify-between">
+                                                <div>
+                                                    <h3 className="font-semibold text-gray-900 text-sm truncate">
+                                                        {review.name}
+                                                    </h3>
+                                                    <p className="text-xs text-gray-500">{review.time}</p>
+                                                </div>
+                                                <Image src="/Svg/google.svg" width={20} height={20} alt="Google" />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                
-                                <div className="flex items-center gap-1 mt-2">
-                                    {[...Array(review.stars)].map((_, i) => (
-                                        <Image key={i} src="/Svg/star.svg" width={16} height={16} alt="star" />
-                                    ))}
-                                    <Image src="/Svg/verify.svg" width={16} height={16} alt="verified" className="ml-1" />
-                                </div>
+                                    
+                                    <div className="flex items-center gap-1 mt-2">
+                                        {[...Array(review.stars)].map((_, i) => (
+                                            <Image key={i} src="/Svg/star.svg" width={16} height={16} alt="star" />
+                                        ))}
+                                        <Image src="/Svg/verify.svg" width={16} height={16} alt="verified" className="ml-1" />
+                                    </div>
 
-                                <div className="mt-2">
-                                    <p className="text-sm text-gray-600">{review.message}</p>
+                                    <div className="mt-2">
+                                        <p className="text-sm text-gray-600">{review.message}</p>
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                         ))}
                     </div>

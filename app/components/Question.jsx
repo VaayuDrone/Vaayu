@@ -34,16 +34,16 @@ const Question = () => {
     return (
         <div className='py-16 w-full bg-(--Segment) flex items-center justify-center px-4 font-poppins relative overflow-hidden'>
             <Image
-            src={"/Images/QBG.png"}
-            width={450}
-            height={450}
-            alt="Background"
-            className="absolute -left-48 bottom-0 z-0  opacity-20 pointer pointer-events-none "
+                src={"/Images/QBG.png"}
+                width={450}
+                height={450}
+                alt="Background"
+                className="absolute -left-48 bottom-0 z-0 opacity-20 pointer-events-none"
             />
-            <div className='w-full max-w-6xl bg-(--QR) rounded-xl shadow-lg overflow-hidden z-10'>
-                <div className='flex flex-col lg:flex-row '>
+            <div className='w-full max-w-6xl bg-(--QR) rounded-xl shadow-lg overflow-hidden '>
+                <div className='flex flex-col lg:flex-row'>
                     {/* Left Section */}
-                    <div className='w-full lg:w-2/5 flex flex-col justify-center p-8 lg:p-12 '>
+                    <div className='w-full lg:w-2/5 flex flex-col justify-center p-8 lg:p-12'>
                         <h2 className='text-3xl lg:text-4xl font-bold mb-6 text-gray-800'>
                             Have Questions?
                         </h2>
@@ -61,11 +61,10 @@ const Question = () => {
                         </span>
                     </div>
 
-                    {/* Right Section - FAQ */}
-                    <div className='w-full lg:w-3/5 bg-(--QBG) p-4 lg:p-12 flex items-start '>
-                        <div className='w-full max-h-[400px] overflow-y-auto'>
+                    <div className='w-full lg:w-3/5 bg-(--QBG) p-4 lg:p-12 flex items-center justify-center lg:m-16 rounded-2xl md:m-0'>
+                        <div className='w-full h-[300px] overflow-hidden'>
                             <div
-                                className='h-full overflow-y-scroll'
+                                className='h-full overflow-y-auto pr-2 w-full py-4'
                                 style={{
                                     scrollbarWidth: 'none',
                                     msOverflowStyle: 'none',
@@ -107,7 +106,7 @@ const Question = () => {
                                             </div>
 
                                             {index < faqData.length - 1 && (
-                                                <div className="my-2  w-full h-[2px] bg-(--QBTN) rounded-full" />
+                                                <div className="my-2 w-full h-[2px] bg-(--QBTN) rounded-full" />
                                             )}
                                         </div>
                                     ))}

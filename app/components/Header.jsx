@@ -5,7 +5,7 @@ import Image from "next/image";
 const Header = () => {
   return (
     <div className="w-screen pt-24 font-poppins overflow-hidden mb-16 " id='home'>
-      <div className="w-full max-w-screen-xl mx-auto flex flex-col md:flex-row items-center justify-between px-4 sm:px-8 md:px-16 gap-12">
+      <div className="w-full max-w-screen-xl mx-auto flex flex-col md:flex-row items-center justify-between px-4 sm:px-8 md:px-16 gap-12 lg:pr-0">
 
         {/* Left: Text */}
         <div className="w-full md:w-1/2 flex flex-col gap-4 text-center md:text-left z-10">

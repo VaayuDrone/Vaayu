@@ -19,14 +19,14 @@ export default function Images() {
             const containerWidth = containerRef.current?.offsetWidth || 0;
             const gap = 16;
             let columns = 2;
-      if (containerWidth < 640) {
-        columns = 1;
-      } else if (containerWidth < 1024) {
-        columns = 1.5;
-      }
+            if (containerWidth < 640) {
+                columns = 1;
+            } else if (containerWidth < 1024) {
+                columns = 1.5;
+            }
 
-      const width = (containerWidth - gap * columns) / columns;
-      setImageWidth(width);
+            const width = (containerWidth - gap * columns) / columns;
+            setImageWidth(width);
         }
 
         updateImageWidth();
@@ -58,13 +58,12 @@ export default function Images() {
     return (
         <div
             ref={containerRef}
-            className=" w-full mx-auto relative overflow-hidden px-4 sm:px-6"
-            // style={{ maxWidth: "100%" }}
+            className=" w-full mx-auto relative  px-4 sm:px-6 2xl:pt-0 pt-16 bg-(--Segment)"
             id="gallery"
         >
             <div
                 ref={marqueeRef}
-                className="flex w-max gap-4"
+                className="flex w-max gap-4 "
                 style={{ willChange: "transform" }}
             >
                 {[...images, ...images].map((src, i) => (
@@ -82,8 +81,14 @@ export default function Images() {
                 alt="Illustration"
                 width={300}
                 height={300}
-                className="absolute top-0 left-0  translate-y-[-60%] hidden sm:block "
+                className="
+        absolute top-0 left-0 
+        
+        translate-y-[-40%] md:translate-y-[-40%] 2xl:translate-y-[-60%]
+        md:w-62 md:h-62 lg:w-72 lg:h-72 2xl:w-84 2xl:h-84 w-56 h-56
+            "
             />
+
         </div>
     );
 }
