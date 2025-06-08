@@ -3,11 +3,11 @@ import Image from 'next/image';
 
 const Shop = () => {
   return (
-    <div className='w-screen bg-(--Segment) pt-14 flex justify-center font-poppins  pb-20 z-10 px-4 sm:px-6'>
-      <div className='flex flex-col gap-12 w-full max-w-6xl px-4'>
-        <div className='font-bold text-2xl sm:text-3xl text-center'>SHOP BY TYPE</div>
+    <div className='w-screen bg-(--Segment) pt-14 flex justify-center font-poppins  pb-20 z-10'>
+      <div className='flex flex-col gap-12 w-1/2 max-w-6xl px-4'>
+        <div className='font-bold text-3xl text-center'>SHOP BY TYPE</div>
 
-        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4'>
+        <div className='grid grid-cols-4 gap-4'>
           {[
             { src: "/SBT/Type1.png", label: "DRONES" },
             { src: "/SBT/Type2.png", label: "FPV DRONE<br />FRAMES" },
@@ -30,7 +30,7 @@ const Shop = () => {
               </div>
            
               <div
-                className='font-semibold text-base sm:text-base text-left pl-2 leading-tight py-2'
+                className='font-semibold text-base text-left pl-2 leading-tight py-2'
                 dangerouslySetInnerHTML={{ __html: label }}
               />
             </div>
