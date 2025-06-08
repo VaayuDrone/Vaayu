@@ -18,8 +18,15 @@ export default function Images() {
         function updateImageWidth() {
             const containerWidth = containerRef.current?.offsetWidth || 0;
             const gap = 16;
-            const width = (containerWidth - gap) / 2;
-            setImageWidth(width);
+            let columns = 2;
+      if (containerWidth < 640) {
+        columns = 1;
+      } else if (containerWidth < 1024) {
+        columns = 1.5;
+      }
+
+      const width = (containerWidth - gap * columns) / columns;
+      setImageWidth(width);
         }
 
         updateImageWidth();
@@ -51,8 +58,8 @@ export default function Images() {
     return (
         <div
             ref={containerRef}
-            className=" w-full mx-auto relative"
-            style={{ maxWidth: "100%" }}
+            className=" w-full mx-auto relative overflow-hidden px-4 sm:px-6"
+            // style={{ maxWidth: "100%" }}
             id="gallery"
         >
             <div
@@ -75,7 +82,7 @@ export default function Images() {
                 alt="Illustration"
                 width={300}
                 height={300}
-                className="absolute top-0 left-0  translate-y-[-60%] "
+                className="absolute top-0 left-0  translate-y-[-60%] hidden sm:block "
             />
         </div>
     );

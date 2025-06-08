@@ -67,11 +67,11 @@ const Contact = () => {
 
     return (
         <>
-            <div  className='w-full z-20  overflow-hidden  max-h-fit bg-Work max-[700px]:mt-16' ref={containerRef} id='support' >
-                <div className='w-full flex px-12 max-[900px]:flex-col '>
-                    <div className='w-1/2 flex flex-col text-Black font-Grotesk max-[900px]:w-full'>
-                        <div className='text-5xl mt-16 mb-8'>Get in <span className='underline underline-offset-4 decoration-[var(--Segment)] '>Touch</span>.</div>
-                        <div className='text-wrap text-lg'>At Vaayu, We develop hydrogen-powered drones designed to deliver medicines swiftly and reliably to remote and underserved areas. Our focus is on advancing practical drone technology to support agriculture and media industries, providing efficient and sustainable solutions. By integrating innovative engineering with real-world applications, we aim to build a stronger drone ecosystem that meets critical needs responsibly.</div>
+            <div  className='w-full z-20 overflow-hidden bg-Work pt-10 px-4 sm:px-6 md:px-12 max-[700px]:mt-16' ref={containerRef} id='support' >
+                <div className='w-full flex flex-col md:flex-row gap-8 '>
+                    <div className='md:w-1/2 w-full  flex flex-col text-Black font-Grotesk '>
+                        <div className='text-3xl sm:text-4xl md:text-5xl mt-8 mb-6'>Get in <span className='underline underline-offset-4 decoration-[var(--Segment)] '>Touch</span>.</div>
+                        <div className='text-base sm:text-lg leading-relaxed text-wrap'>At Vaayu, We develop hydrogen-powered drones designed to deliver medicines swiftly and reliably to remote and underserved areas. Our focus is on advancing practical drone technology to support agriculture and media industries, providing efficient and sustainable solutions. By integrating innovative engineering with real-world applications, we aim to build a stronger drone ecosystem that meets critical needs responsibly.</div>
                         <div className='flex mt-8 gap-6'>
                             <a href="https://www.instagram.com/manan__batra/" target="_blank" >
                                 <div>
@@ -96,12 +96,12 @@ const Contact = () => {
                             </a>
                         </div>
                     </div>
-                    <div className='w-1/2 max-[900px]:w-full'>
-                        <div className="w-[75%] mx-auto p-4 text-Black">
-                            <h2 className="text-2xl font-semibold mb-4 text-center">Contact Us</h2>
-                            {error && <p className="text-red-500 font-semibold text-xl ">{error}</p>}
-                            {success && <p className="text-green-400 font-semibold text-xl">{success}</p>}
-                            <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className='md:w-1/2 w-full'>
+                        <div className="w-full md:w-[85%] mx-auto p-4 text-Black">
+                            <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-center">Contact Us</h2>
+                            {error && <p className="text-red-500 font-semibold text-center text-sm sm:text-base ">{error}</p>}
+                            {success && <p className="text-green-400 font-semibold text-center text-sm sm:text-base">{success}</p>}
+                            <form onSubmit={handleSubmit} className="space-y-4 mt-4">
                                 <div>
                                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 ">Name:</label>
                                     <input

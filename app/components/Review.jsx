@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Heart } from "lucide-react";
 
@@ -104,8 +104,23 @@ const reviews = [
 
 const Review = () =>{
     const [currentIndex, setCurrentIndex] = useState(0);
+      const [itemsPerView, setItemsPerView] = useState(3);
 
-    const itemsPerView = 3;
+      useEffect(()=>{
+          const updateItemsPerView = () => {
+      const width = window.innerWidth;
+      if (width < 640) setItemsPerView(1); // for  Mobile screen
+      else if (width < 1024) setItemsPerView(2); // for tablet screen
+      else setItemsPerView(3); // for desktop screen
+    };
+
+    updateItemsPerView();
+    window.addEventListener("resize", updateItemsPerView);
+    return () => window.removeEventListener("resize", updateItemsPerView);
+        
+      },[])
+
+    
     const maxIndex = reviews.length - itemsPerView;
 
     const scrollLeft = () => {
@@ -147,8 +162,8 @@ const Review = () =>{
                         {reviews.map((review) => (
                             <div
                                 key={review.id}
-                                className="flex-none w-[calc(33.333%-1rem)] bg-(--QR) rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow"
-                            >
+                                className="flex-none w-full sm:w-1/2 lg:w-1/3 px-2"
+                            > <div className="h-full bg-[--QR] rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow">
                                 <div className="flex items-center gap-3">
                                     <div className="relative flex-shrink-0">
                                         <img
@@ -184,6 +199,7 @@ const Review = () =>{
                                 <div className="mt-2">
                                     <p className="text-sm text-gray-600">{review.message}</p>
                                 </div>
+                            </div>
                             </div>
                         ))}
                     </div>
