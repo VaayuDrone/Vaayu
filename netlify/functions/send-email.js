@@ -1,17 +1,40 @@
+// netlify/functions/send-email.js
+const nodemailer = require('nodemailer');
 
-import nodemailer from 'nodemailer';
-import { NextResponse } from 'next/server';
+exports.handler = async (event, context) => {
+  // Handle CORS preflight
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS'
+  };
 
-export async function POST(request) {
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers,
+      body: ''
+    };
+  }
+
+  if (event.httpMethod !== 'POST') {
+    return {
+      statusCode: 405,
+      headers,
+      body: JSON.stringify({ error: 'Method not allowed' })
+    };
+  }
+
   try {
     const requestId = Math.random().toString(36).substr(2, 5);
     
     console.log(`[INFO] ${new Date().toISOString()} - Contact form request received`, {
       requestId,
-      method: request.method
+      method: event.httpMethod,
+      headers: event.headers
     });
 
-    const { name, email, message } = await request.json();
+    const { name, email, message } = JSON.parse(event.body);
 
     console.log(`[INFO] ${new Date().toISOString()} - Form data received`, {
       requestId,
@@ -22,10 +45,14 @@ export async function POST(request) {
     });
 
     if (!name || !email || !message) {
-      return NextResponse.json(
-        { success: false, error: 'Missing required fields' },
-        { status: 400 }
-      );
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ 
+          success: false, 
+          error: 'Missing required fields' 
+        })
+      };
     }
 
     if (!process.env.GMAIL_USER || !process.env.GMAIL_PASS) {
@@ -46,7 +73,7 @@ export async function POST(request) {
       hasPassword: !!process.env.GMAIL_PASS
     });
 
-    const transporter = nodemailer.createTransport(transportConfig);
+    const transporter = nodemailer.createTransporter(transportConfig);
 
     console.log(`[INFO] ${new Date().toISOString()} - Verifying Gmail connection`, { requestId });
     
@@ -90,7 +117,11 @@ export async function POST(request) {
       response: info.response
     });
 
-    return NextResponse.json({ success: true });
+    return {
+      statusCode: 200,
+      headers, // Added missing headers
+      body: JSON.stringify({ success: true })
+    };
 
   } catch (error) {
     const errorRequestId = Math.random().toString(36).substr(2, 5);
@@ -102,24 +133,14 @@ export async function POST(request) {
       errorStack: error.stack
     });
 
-    return NextResponse.json(
-      { 
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({ 
         success: false, 
         error: 'Failed to send email: ' + error.message,
         requestId: errorRequestId 
-      },
-      { status: 500 }
-    );
+      })
+    };
   }
-}
-
-export async function OPTIONS(request) {
-  return new NextResponse(null, {
-    status: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-    },
-  });
-}
+};
