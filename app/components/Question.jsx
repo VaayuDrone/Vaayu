@@ -38,10 +38,10 @@ const Question = () => {
             width={450}
             height={450}
             alt="Background"
-            className="absolute translate-x-[-155%] translate-y-[45%] z-10"
+            className="absolute -left-48 bottom-0 z-0  opacity-20 pointer pointer-events-none "
             />
-            <div className='w-full max-w-6xl bg-(--QR) rounded-xl shadow-lg overflow-hidden'>
-                <div className='flex flex-col lg:flex-row h-[500px]'>
+            <div className='w-full max-w-6xl bg-(--QR) rounded-xl shadow-lg overflow-hidden z-10'>
+                <div className='flex flex-col lg:flex-row '>
                     {/* Left Section */}
                     <div className='w-full lg:w-2/5 flex flex-col justify-center p-8 lg:p-12 '>
                         <h2 className='text-3xl lg:text-4xl font-bold mb-6 text-gray-800'>
@@ -62,8 +62,8 @@ const Question = () => {
                     </div>
 
                     {/* Right Section - FAQ */}
-                    <div className='w-full lg:w-1/2 bg-(--QBG) p-4 lg:p-12 flex items-start m-18 rounded-2xl'>
-                        <div className='w-full h-full'>
+                    <div className='w-full lg:w-3/5 bg-(--QBG) p-4 lg:p-12 flex items-start '>
+                        <div className='w-full max-h-[400px] overflow-y-auto'>
                             <div
                                 className='h-full overflow-y-scroll'
                                 style={{
@@ -77,7 +77,7 @@ const Question = () => {
                                     }
                                 `}</style>
 
-                                <div className='flex flex-col items-center'>
+                                <div className='flex flex-col gap-4'>
                                     {faqData.map((item, index) => (
                                         <div key={item.id} className='w-full'>
                                             <div className=''>
