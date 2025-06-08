@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Segment = () => {
   return (
-    <div className='w-screen bg-(--Segment) h-full flex items-center justify-center py-16'>
+    <div className='w-screen bg-(--Segment) h-full flex items-center justify-center py-16' id='drones'>
       {/* Structure */}
       <div className='w-4/5 max-w-5xl bg-white rounded-3xl flex flex-col px-6 md:px-8 py-10 gap-12 relative '>
         {/* Main Title */}

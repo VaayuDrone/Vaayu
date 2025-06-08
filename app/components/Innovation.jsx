@@ -17,7 +17,7 @@ const Innovation = () => {
           <div className="relative w-1/2 aspect-square rounded-xl overflow-hidden">
             <div className='absolute inset-0 bg-[url("/Images/Innovation1.png")] bg-cover bg-center'></div>
             
-            <div className="relative z-10  flex flex-col items-center gap-8 p-6 pt-8">
+            <div className="relative   flex flex-col items-center gap-8 p-6 pt-8">
               <div className="text-xs text-center">
                 Engineering, Science & Technology
               </div>
@@ -33,7 +33,7 @@ const Innovation = () => {
           <div className="relative w-1/2 aspect-square rounded-xl overflow-visible"> 
             <div className="absolute inset-0 rounded-xl overflow-hidden bg-[url('/Images/Innovation2.png')] bg-cover bg-center"></div>
 
-            <div className="absolute -top-36 -right-32 z-20 rotate-180">
+            <div className="absolute -top-36 -right-32  rotate-180 ">
               <Image
                 src="/Images/Illustration2.png"
                 alt="Illustration"
@@ -42,7 +42,7 @@ const Innovation = () => {
               />
             </div>
 
-            <div className="relative z-10 text-white flex flex-col items-center gap-8 p-6 pt-8">
+            <div className="relative flex flex-col items-center gap-8 p-6 pt-8">
               <div className="text-xs text-center">
                 Industry Insight Report
               </div>

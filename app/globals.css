@@ -11,6 +11,9 @@
   --BTNBG: #f2f2f2;
   --SBT:#0000000D;
   --HSBT:#00000033;
+  --QR:#FFFFFF91;
+  --QBG:#8080801A;
+  --QBTN:#80808056;
 }
 
 /* Define custom utilities */
@@ -33,4 +36,17 @@
 
 @utility animate-bounce-slow {
   animation: bounce-slow 3s ease-in-out infinite;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background:	#229200; 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
 }

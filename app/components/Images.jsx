@@ -53,6 +53,7 @@ export default function Images() {
             ref={containerRef}
             className=" w-full mx-auto relative"
             style={{ maxWidth: "100%" }}
+            id="gallery"
         >
             <div
                 ref={marqueeRef}
@@ -74,7 +75,7 @@ export default function Images() {
                 alt="Illustration"
                 width={300}
                 height={300}
-                className="absolute top-0 left-0  translate-y-[-60%] z-20"
+                className="absolute top-0 left-0  translate-y-[-60%] "
             />
         </div>
     );
