@@ -54,8 +54,8 @@ const Question = () => {
                             role="button"
                             tabIndex={0}
                             className="w-max px-6 py-3 rounded-3xl font-medium text-white bg-gradient-to-r from-[var(--LG1)] to-[var(--LG2)] cursor-pointer"
-                            onClick={() => window.location.href = "mailto:mananbatradev@gmail.com?subject=Hello&body=Message%20here"}
-                            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') window.location.href = "mailto:mananbatradev@gmail.com?subject=Hello&body=Message%20here"; }}
+                            onClick={() => window.location.href = "mailto:vaayudelivery24@gmail.com?subject=Hello&body=Message%20here"}
+                            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') window.location.href = "mailto:vaayudelivery24@gmail.com?subject=Hello&body=Message%20here"; }}
                         >
                             Chat Now
                         </span>
