@@ -36,13 +36,11 @@ const Contact = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [debugInfo, setDebugInfo] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         setSuccess('');
-        setDebugInfo('');
         
         const messageWords = message.trim().split(' ').filter(word => word);
         if (messageWords.length < 10) {
@@ -52,17 +50,8 @@ const Contact = () => {
 
         setIsLoading(true);
 
-        // Log the request details
-        console.log('=== FORM SUBMISSION DEBUG ===');
-        console.log('Current URL:', window.location.href);
-        console.log('API Endpoint:', '/api/send');
-        console.log('Request Data:', { name, email, message: message.substring(0, 50) + '...' });
-
         try {
             const requestData = { name, email, message };
-            
-            // Log before making request
-            console.log('Making request to:', `${window.location.origin}/api/send`);
             
             const response = await axios.post('/api/send', requestData, {
                 headers: {
@@ -70,9 +59,6 @@ const Contact = () => {
                 },
                 timeout: 30000, // 30 second timeout
             });
-
-            console.log('Response received:', response.status, response.statusText);
-            console.log('Response data:', response.data);
             
             setSuccess('Message sent successfully!');
             setName('');
@@ -80,65 +66,7 @@ const Contact = () => {
             setMessage('');
             
         } catch (err) {
-            console.error('=== ERROR DETAILS ===');
-            console.error('Error object:', err);
-            
-            let errorMessage = 'Unknown error occurred';
-            let debugDetails = '';
-            
-            if (err.response) {
-                // Server responded with error status
-                console.error('Response Status:', err.response.status);
-                console.error('Response Headers:', err.response.headers);
-                console.error('Response Data:', err.response.data);
-                
-                errorMessage = `Server Error (${err.response.status}): ${err.response.statusText}`;
-                debugDetails = `Status: ${err.response.status}\nData: ${JSON.stringify(err.response.data, null, 2)}`;
-                
-                // Common Netlify/serverless errors
-                switch (err.response.status) {
-                    case 404:
-                        errorMessage = 'API endpoint not found. Check if /api/send exists.';
-                        debugDetails += '\n\nPossible issues:\n- Missing API route file\n- Incorrect file structure\n- Build/deployment issue';
-                        break;
-                    case 500:
-                        errorMessage = 'Server internal error. Check server logs.';
-                        debugDetails += '\n\nCheck:\n- Server-side code errors\n- Environment variables\n- Database connections';
-                        break;
-                    case 502:
-                        errorMessage = 'Bad Gateway. Server is unreachable.';
-                        debugDetails += '\n\nPossible issues:\n- Function timeout\n- Memory limit exceeded\n- Invalid response format';
-                        break;
-                    case 504:
-                        errorMessage = 'Gateway Timeout. Request took too long.';
-                        debugDetails += '\n\nPossible issues:\n- Function execution timeout\n- External service delays';
-                        break;
-                }
-                
-            } else if (err.request) {
-                // Request made but no response received
-                console.error('Request made but no response:', err.request);
-                errorMessage = 'No response from server. Check network connection.';
-                debugDetails = `Request URL: ${err.request.responseURL || 'Unknown'}\nStatus: ${err.request.status || 'No status'}`;
-                
-            } else {
-                // Error in request setup
-                console.error('Request setup error:', err.message);
-                errorMessage = `Request Error: ${err.message}`;
-                debugDetails = err.message;
-            }
-            
-            // Network specific errors
-            if (err.code === 'ECONNABORTED') {
-                errorMessage = 'Request timeout. Server took too long to respond.';
-            } else if (err.code === 'ERR_NETWORK') {
-                errorMessage = 'Network error. Check your internet connection.';
-            }
-            
-            setError(errorMessage);
-            setDebugInfo(debugDetails);
-            
-            console.error('=== END ERROR DETAILS ===');
+            setError('Error sending message. Please try again later.');
             
         } finally {
             setIsLoading(false);
@@ -173,28 +101,12 @@ const Contact = () => {
                             
                             {/* Error Display */}
                             {error && (
-                                <div className="mb-4 p-3 bg-red-100 border border-red-400 rounded">
-                                    <p className="text-red-700 font-semibold text-sm sm:text-base">{error}</p>
-                                </div>
-                            )}
-                            
-                            {/* Debug Info Display */}
-                            {debugInfo && (
-                                <div className="mb-4 p-3 bg-yellow-100 border border-yellow-400 rounded">
-                                    <details>
-                                        <summary className="cursor-pointer text-yellow-800 font-medium">Debug Information (Click to expand)</summary>
-                                        <pre className="mt-2 text-xs text-yellow-700 whitespace-pre-wrap overflow-auto max-h-40">
-                                            {debugInfo}
-                                        </pre>
-                                    </details>
-                                </div>
+                                <p className="text-red-500 font-semibold text-center text-sm sm:text-base mb-4">{error}</p>
                             )}
                             
                             {/* Success Display */}
                             {success && (
-                                <div className="mb-4 p-3 bg-green-100 border border-green-400 rounded">
-                                    <p className="text-green-700 font-semibold text-sm sm:text-base">{success}</p>
-                                </div>
+                                <p className="text-green-500 font-semibold text-center text-sm sm:text-base mb-4">{success}</p>
                             )}
                             
                             <form onSubmit={handleSubmit} className="space-y-4 mt-4">
