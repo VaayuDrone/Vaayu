@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Shop = () => {
   return (
-    <div className='w-screen bg-(--Segment) pt-14 flex justify-center font-poppins  pb-20 z-10'>
+    <div className='w-screen bg-(--Segment) pt-14 flex justify-center font-poppins  pb-20 z-10' id='shop'>
       <div className='flex flex-col gap-12 w-1/2 max-w-6xl px-4'>
         <div className='font-bold text-3xl text-center'>SHOP BY TYPE</div>
 

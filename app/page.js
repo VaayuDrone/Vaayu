@@ -1,10 +1,14 @@
-import React from 'react'
-import Navbar from './components/Navbar'
-import Header from './components/Header'
-import Segment from './components/Segment'
-import Selling from './components/Selling'
+import React from 'react';
+import Navbar from './components/Navbar';
+import Header from './components/Header';
+import Segment from './components/Segment';
+import Selling from './components/Selling';
 import Shop from './components/Shop';
-import Images from './components/Images'
+import Images from './components/Images';
+import Innovation from './components/Innovation';
+import Review from './components/Review';
+import Question from './components/Question';
+import Contact from './components/Contact';
 
 const Page = () => {
   return (
@@ -20,6 +24,10 @@ const Page = () => {
       <Selling/>
       <Shop/>
       <Images/>
+      <Innovation/>
+      <Review/>
+      <Question/>
+      <Contact/>
     </div>
   )
 }
