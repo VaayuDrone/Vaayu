@@ -1,7 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-     images: {
-    domains: ['randomuser.me'],
+  output: 'export',
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+    // Fix the deprecated domains warning
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'randomuser.me',
+      },
+    ],
   },
 };
 
