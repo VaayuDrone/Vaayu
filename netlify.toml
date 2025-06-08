@@ -8,20 +8,7 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# API Routes configuration
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-
-# Handle client-side routing
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  conditions = {Role = ["admin"]}
-
-# Catch-all for SPA routing
+# Client-side routing for Next.js (this should be the only redirect for SPA)
 [[redirects]]
   from = "/*"
   to = "/index.html"
